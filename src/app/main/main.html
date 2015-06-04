@@ -1,15 +1,31 @@
-<div class="container">
+<div ng-controller="BooksController as vm" class="container">
 
   <div ng-include="'app/components/navbar/navbar.html'"></div>
 
-  <div ng-controller="BooksController as vm" class="jumbotron">
+  <div class="jumbotron">
     <h1>'Allo, 'Allo! {{ vm.appName }}</h1>
+    <h2>{{ vm.appDesc }}</h2>
     <p class="lead">
       <img src="assets/images/yeoman.png" alt="I'm Yeoman"><br>
       Always a pleasure scaffolding your apps.
     </p>
     <p><a class="btn" ng-href="#">Splendid!</a></p>
   </div>
+
+  <h3>All Books</h3>
+  <div>
+    <ul>
+      <li ng-repeat="book in vm.allBooks"><b>{{ book.title }}, {{ book.year_published }}</b> - {{ book.author }}</li>
+    </ul>
+  </div>
+
+  <h3>All Readers</h3>
+  <div>
+    <ul>
+      <li ng-repeat="reader in vm.allReaders">{{ reader.name }} - {{ vm.getBadge(reader.totalMinutesRead) }}</li>
+    </ul>
+  </div>
+
 
   <div class="col" ng-repeat="awesomeThing in awesomeThings | orderBy:'rank'">
     <div class="thumbnail">

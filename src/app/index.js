@@ -3,29 +3,33 @@
 
   // routes
   angular.module('angularjsServicesInDepth', ['ngCookies', 'ngResource', 'ngRoute'])
-    .config(function ($routeProvider, booksProvider) {
-      $routeProvider
-        .when('/', {
-          templateUrl: 'app/main/main.html',
-          controller: 'MainCtrl'
-        })
-        .otherwise({
-          redirectTo: '/'
-        });
+    .config(['$routeProvider', 'booksProvider', 'constants', 'dataServiceProvider',
+      function ($routeProvider, booksProvider, constants, dataServiceProvider) {
+        $routeProvider
+          .when('/', {
+            templateUrl: 'app/main/main.html',
+            controller: 'MainCtrl'
+          })
+          .otherwise({
+            redirectTo: '/'
+          });
 
-      booksProvider.setIncludeVersionInTitle(true);
+        booksProvider.setIncludeVersionInTitle(true);
 
-    });
+        console.log('title from constants service: ' + constants.APP_TITLE);
+
+        console.log(dataServiceProvider.$get);
+
+      }]);
 
   // books provider
   angular.module('angularjsServicesInDepth')
-    .provider('books', function () {
-      this.$get = function () {
+    .provider('books', ['constants', function () {
+      this.$get = function (constants) {
 
-        var appName = 'Book Logger';
-        var appDesc = 'Track which books you read.';
-
-        var version = '1.0';
+        var appName = constants.APP_TITLE;
+        var appDesc = constants.APP_DESCRIPTION;
+        var version = constants.APP_VERSION;
 
         if (includeVersionInTitle) {
           appName += ' ' + version;
@@ -42,6 +46,6 @@
         includeVersionInTitle = value;
       };
 
-    });
+    }]);
 
 })();
