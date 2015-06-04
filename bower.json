@@ -1,0 +1,16 @@
+{
+  "name": "angularjsServicesInDepth",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular-cookies": "~1.3.4",
+    "angular-resource": "~1.3.4",
+    "angular-route": "~1.3.4",
+    "angular": "~1.3.4"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.3.4"
+  },
+  "resolutions": {
+    "angular": "~1.3.4"
+  }
+}
