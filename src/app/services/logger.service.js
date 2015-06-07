@@ -20,7 +20,7 @@
 
     this.logBook = function (book) {
       console.log('Book: ' + book.title);
-    }
+    };
   }
 
   BookAppLogger.prototype = Object.create(LoggerBase.prototype);

@@ -3,8 +3,8 @@
 
   // routes
   angular.module('angularjsServicesInDepth', ['ngCookies', 'ngResource', 'ngRoute'])
-    .config(['$routeProvider', 'booksProvider', 'constants', 'dataServiceProvider',
-      function ($routeProvider, booksProvider, constants, dataServiceProvider) {
+    .config(['$routeProvider', 'booksProvider', 'constants',
+      function ($routeProvider, booksProvider, constants) {
         $routeProvider
           .when('/', {
             templateUrl: 'app/main/main.html',
@@ -16,9 +16,9 @@
 
         booksProvider.setIncludeVersionInTitle(true);
 
-        console.log('title from constants service: ' + constants.APP_TITLE);
+        //console.log('title from constants service: ' + constants.APP_TITLE);
 
-        console.log(dataServiceProvider.$get);
+        //console.log(dataServiceProvider.$get);
 
       }]);
 

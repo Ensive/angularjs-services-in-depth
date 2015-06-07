@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('angularjsServicesInDepth')
-    .factory('dataService', dataService);
+    .factory('dataService', ['$q', '$timeout', dataService]);
 
-  function dataService(logger) {
+  function dataService($q, $timeout) {
     return {
       getAllBooks: getAllBooks,
       getAllReaders: getAllReaders
@@ -12,9 +12,9 @@
 
     function getAllBooks() {
 
-      logger.output('getting all books');
+      //logger.output('getting all books');
 
-      return [
+      var booksArray = [
         {
           book_id: 1,
           title: 'Harry Potter and the Deathly Hallows',
@@ -34,13 +34,32 @@
           year_published: 1963
         }
       ];
+
+      var deferred = $q.defer();
+
+      $timeout(function () {
+
+        var successful = true;
+
+        if (successful) {
+          // call resolve
+          deferred.notify('Just getting started gathering books...');
+          deferred.notify('Almost done gathering books...');
+          deferred.resolve(booksArray);
+        } else {
+          deferred.reject('Error retrieving books.');
+        }
+
+      }, 1000);
+
+      return deferred.promise;
     }
 
     function getAllReaders() {
 
-      logger.output('getting all readers');
+      //logger.output('getting all readers');
 
-      return [
+      var readersArray = [
         {
           reader_id: 1,
           name: 'Marie',
@@ -60,10 +79,20 @@
           totalMinutesRead: 600
         }
       ];
+
+      // create deferred object
+      var deferred = $q.defer();
+
+      $timeout(function () {
+        deferred.resolve(readersArray);
+      }, 1500);
+
+      // return a promise
+      return deferred.promise;
     }
 
   }
 
-  dataService.$inject = ['logger'];
+  //dataService.$inject = ['logger'];
 
 })();
