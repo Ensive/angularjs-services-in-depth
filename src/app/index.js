@@ -3,12 +3,22 @@
 
   // routes
   angular.module('angularjsServicesInDepth', ['ngCookies', 'ngResource', 'ngRoute'])
-    .config(['$routeProvider', 'booksProvider', 'constants',
-      function ($routeProvider, booksProvider, constants) {
+    .config(['$routeProvider', 'booksProvider',
+      function ($routeProvider, booksProvider) {
         $routeProvider
+          //.when('/', {
+          //  templateUrl: 'app/main/main.html',
+          //  controller: 'MainCtrl'
+          //})
           .when('/', {
-            templateUrl: 'app/main/main.html',
-            controller: 'MainCtrl'
+            templateUrl: '/app/templates/books.html',
+            controller: 'BooksController',
+            controllerAs: 'vm'
+          })
+          .when('/add-book', {
+            templateUrl: '/app/templates/add-book.html',
+            controller: 'AddBookController',
+            controllerAs: 'vm'
           })
           .otherwise({
             redirectTo: '/'

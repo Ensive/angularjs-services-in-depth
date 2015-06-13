@@ -9,6 +9,7 @@
 
     vm.appName = books.appName;
     vm.appDesc = books.appDesc;
+    vm.isLoading = true;
 
     var booksPromise = dataService.getAllBooks();
     var readersPromise = dataService.getAllReaders();
@@ -18,6 +19,7 @@
       .catch(getAllDataError);
 
     function getAllDataSuccess(dataArray) {
+      vm.isLoading = false;
       vm.allBooks = dataArray[0];
       vm.allReaders = dataArray[1];
     }

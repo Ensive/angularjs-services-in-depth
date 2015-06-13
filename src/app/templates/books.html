@@ -1,0 +1,21 @@
+<div ng-controller="BooksController as vm">
+
+  <h3>All Books</h3>
+  <div class="list-data">
+    <i ng-show="vm.isLoading" class="glyphicon glyphicon-refresh"></i>
+    <ul>
+      <li ng-repeat="book in vm.allBooks"><b>{{ book.title }}, {{ book.year_published }}</b> - {{ book.author }}</li>
+    </ul>
+  </div>
+
+  <h3>All Readers</h3>
+  <div class="list-data">
+    <i ng-show="vm.isLoading" class="glyphicon glyphicon-refresh"></i>
+    <ul>
+      <li ng-repeat="reader in vm.allReaders">{{ reader.name }} - {{ vm.getBadge(reader.totalMinutesRead) }}</li>
+    </ul>
+  </div>
+
+  <hr>
+
+</div>

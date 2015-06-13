@@ -13,7 +13,8 @@ module.exports = function(options) {
     var injectFiles = gulp.src([
       options.src + '/app/**/*.styl',
       '!' + options.src + '/app/index.styl',
-      '!' + options.src + '/app/vendor.styl'
+      '!' + options.src + '/app/vendor.styl',
+      '!' + options.src + '/app/mixins.styl'
     ], { read: false });
 
     var injectOptions = {

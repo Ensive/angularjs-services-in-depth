@@ -1,13 +1,13 @@
-<nav class="navbar" ng-controller="NavbarCtrl">
-  <a href="https://github.com/Swiip/generator-gulp-angular">Gulp Angular</a>
+<nav class="navbar" ng-controller="NavbarCtrl as vm">
+  <a ng-href>{{ vm.appTitle }}</a>
 
   <ul>
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
+    <li ng-class="{ 'active': vm.isActive('/') }"><a ng-href="#/">Home</a></li>
+    <li ng-class="{ 'active': vm.isActive('/add-book') }"><a ng-href="#/add-book">Add New Book</a></li>
+    <li ng-class="{ 'active': vm.isActive('/about') }"><a ng-href>Contact</a></li>
   </ul>
 
-  <ul>
-    <li><a ng-href="#">Current date: {{ date | date:'yyyy-MM-dd' }}</a></li>
+  <ul class="date">
+    <li><a ng-href>Today is: {{ vm.date | date:'fullDate' }}</a></li>
   </ul>
 </nav>
